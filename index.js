@@ -20,7 +20,7 @@ app.get("/", function (req, res) {
 
 //e.g [project url]/api/2015-12-25
 //{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}
-/*
+
 app.get("/api/timestamp/", function (req, res) {
 
   let date = new Date();
@@ -30,7 +30,7 @@ app.get("/api/timestamp/", function (req, res) {
     "utc": date.toUTCString()
   });
 });
-*/
+
 // your first API endpoint... 
 app.get("/api/timestamp/:date_str", function (req, res) {
   const { date_str } = req.params;
