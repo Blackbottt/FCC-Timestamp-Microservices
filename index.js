@@ -18,12 +18,34 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+//e.g [project url]/api/2015-12-25
+//{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}
+/*
+app.get("/api/timestamp/", function (req, res) {
 
-// your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+  let date = new Date();
+  
+  return res.json({
+    "unix": date.getTime(), 
+    "utc": date.toUTCString()
+  });
 });
+*/
+// your first API endpoint... 
+app.get("/api/timestamp/:date_str", function (req, res) {
+  const { date_str } = req.params;
 
+  let date = new Date(date_str);
+
+  if(date === 'Invalid Date') {
+    return res.json({ "error": "Invalid Date" });
+  } else {
+    return res.json({
+      "unix": date.getTime(), 
+      "utc": date.toUTCString()
+    });
+  }
+});
 
 
 // listen for requests :)
